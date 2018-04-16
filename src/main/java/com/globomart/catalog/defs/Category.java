@@ -13,5 +13,8 @@ public enum Category {
 	SPORTS,
 	TOYS,
 	BAGS,
-	BOOKS	
+	BOOKS,
+	BIKE,
+	BICYCLE,
+	CAR
 }

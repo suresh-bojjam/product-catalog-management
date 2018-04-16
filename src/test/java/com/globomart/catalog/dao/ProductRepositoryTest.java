@@ -3,6 +3,8 @@ package com.globomart.catalog.dao;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.Before;
@@ -42,6 +44,7 @@ public class ProductRepositoryTest {
 	@Test
 	public void addProductTest() throws Exception{
 		try {
+
 			Product product=new Product();
 			product.setProductId(new Long(1234));
 			product.setProductName("Book");
@@ -70,20 +73,62 @@ public class ProductRepositoryTest {
 	@Test
 	public void insertTestData() {
 		RestTemplate restClient=new RestTemplate();
-		Product p;
-		int i=1;
-		while(i<=10) {
-			p=new Product();
-			p.setProductId(getRandomIntegerBetweenRange(1000,2000));
-			p.setProductName("Book");
-			p.setProductDescription("oracle java7");
-			p.setCategory("Book");
-			p.setUnitPrice(new Double(2500));
-			p.setVendorId("101");
-			HttpEntity<Product> httpEntity=new HttpEntity<Product>(p);
-			restClient.exchange("http://localhost:8080/v1/add", HttpMethod.POST,httpEntity, Product.class);
-			i++;
-		}
+		loadData().forEach((product)->{
+			try {
+				restClient.exchange("http://localhost:8080/v1/add", 
+						HttpMethod.POST,
+						new HttpEntity<Product>(product), 
+						Product.class);	
+			} catch (Exception e) {
+				e.printStackTrace();
+			}				
+		});
+	}
+	
+	private static List<Product> loadData() {
+		List<Product> products=new ArrayList<>();
+		products.add(new Product(new Long(1001),
+				"TVS Apache",
+				"TVS bike",
+				new Double(2000000),
+				"BIKE",
+				"101"));
+		
+		products.add(new Product(new Long(1002),
+				"Bajaj Domiar",
+				"Bajaj bike",
+				new Double(2500000),
+				"BIKE",
+				"102"));
+
+		products.add(new Product(new Long(1003),
+				"Hero bicycle",
+				"bicycle",
+				new Double(8000),
+				"BICYCLE",
+				"103"));
+
+		products.add(new Product(new Long(1004),
+				"Honda Citi",
+				"Honda Car",
+				new Double(1600000),
+				"CAR",
+				"104"));
+		
+		products.add(new Product(new Long(1005),
+				"MUSTANG GT",
+				"GT Car",
+				new Double(3500000),
+				"CAR",
+				"105"));
+		
+		products.add(new Product(new Long(1006),
+				"Honda bicycle",
+				"bicycle",
+				new Double(8000),
+				"BICYCLE",
+				"106"));
+		return products;
 	}
 
 	private static long getRandomIntegerBetweenRange(int min, int max){
