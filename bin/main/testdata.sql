@@ -1,0 +1,10 @@
+INSERT INTO products VALUES('1001' ,'VU TV' ,'View Luxury tv' ,25000,'101' ,'tv' );
+INSERT INTO products VALUES('1002' ,'VU TV' ,'View Luxury tv' ,25000,'102' ,'tv' );
+INSERT INTO products VALUES('1003' ,'VU TV' ,'View Luxury tv' ,25000,'101' ,'tv' );
+INSERT INTO products VALUES('1004' ,'VU TV' ,'View Luxury tv' ,25000,'104' ,'tv' );
+INSERT INTO products VALUES('1005' ,'VU TV' ,'View Luxury tv' ,25000,'103' ,'tv' );
+INSERT INTO products VALUES('1006' ,'VU TV' ,'View Luxury tv' ,25000,'106' ,'tv' );
+INSERT INTO products VALUES('1007' ,'VU TV' ,'View Luxury tv' ,25000,'104' ,'tv' );
+INSERT INTO products VALUES('1008' ,'VU TV' ,'View Luxury tv' ,25000,'104' ,'tv' );
+INSERT INTO products VALUES('1009' ,'VU TV' ,'View Luxury tv' ,25000,'105' ,'tv' );
+INSERT INTO products VALUES('1010' ,'VU TV' ,'View Luxury tv' ,25000,'105' ,'tv' );
