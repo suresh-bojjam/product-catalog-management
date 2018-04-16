@@ -2,6 +2,7 @@ package com.globomart.catalog.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import com.globomart.catalog.defs.SearchType;
@@ -21,5 +22,5 @@ public interface CatalogService {
 	public Product addProduct(Product product);
 	public void removeProduct(Long productId);
 	public List<Product> searchProducsts(String queryString,SearchType searchType) throws GloboMartException;
-	public List<Product> searchProducts(String queryString,SearchType searchType,int page_no,int page_size);
+	public Page<Product> searchProducts(String queryString,SearchType searchType,int page_no,int page_size);
 }

@@ -1,5 +1,7 @@
 package com.globomart.catalog.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.globomart.catalog.defs.SearchType;
 import com.globomart.catalog.exceptions.GloboMartException;
 import com.globomart.catalog.models.Hello;
 import com.globomart.catalog.models.Product;
@@ -43,5 +47,11 @@ public class CatalogController {
 	@RequestMapping(value="/remove/{id}",method=RequestMethod.DELETE)
 	public void removeProduct(@PathVariable(value="id") Long productId) {
 		catalogService.removeProduct(productId);
+	}
+	
+	
+	@RequestMapping(value="/search",method=RequestMethod.GET)
+	public List<Product> findProducts(@RequestParam("searchWith") String searchWith){
+		return catalogService.searchProducsts(searchWith, SearchType.BY_PRODUCT_NAME);
 	}
 }

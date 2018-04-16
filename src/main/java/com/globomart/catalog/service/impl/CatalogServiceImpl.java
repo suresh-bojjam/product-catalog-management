@@ -3,10 +3,12 @@ package com.globomart.catalog.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.globomart.catalog.dao.ProductRepository;
+import com.globomart.catalog.dao.ProductSpecification;
 import com.globomart.catalog.defs.SearchType;
 import com.globomart.catalog.exceptions.GloboMartException;
 import com.globomart.catalog.models.Product;
@@ -50,12 +52,17 @@ public class CatalogServiceImpl implements CatalogService{
 
 	@Override
 	public List<Product> searchProducsts(String queryString, SearchType searchType) throws GloboMartException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Product> products=null;
+		if(SearchType.BY_PRODUCT_NAME.equals(searchType)) {
+			products=productRepo.findAll(ProductSpecification.productNameIsLike(queryString));
+		}else if(SearchType.BY_PRODUCT_DESCRIPTION.equals(searchType)){
+			products=productRepo.findAll(ProductSpecification.productDescIsLike(queryString));
+		}
+		return products;
 	}
 
 	@Override
-	public List<Product> searchProducts(String queryString, SearchType searchType, int page_no, int page_size) {
+	public Page<Product> searchProducts(String queryString, SearchType searchType, int page_no, int page_size) {
 		// TODO Auto-generated method stub
 		return null;
 	}
